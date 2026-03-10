@@ -137,6 +137,15 @@ function loadDataRealtime() {
     let total = 0;
     currentMonthExpenses = [];
 
+    // TÍNH NĂNG ĐỔI MÀU TRẠNG THÁI MẠNG (ĐÃ THÊM VÀO ĐÂY) 🌟
+    const isOffline = snapshot.metadata.fromCache;
+    document.getElementById("network-status").innerText = isOffline
+      ? "Đang Offline (Lưu tạm)"
+      : "Đã đồng bộ Online";
+    document.getElementById("network-status").style.backgroundColor = isOffline
+      ? "#ff9800"
+      : "#4caf50";
+
     snapshot.forEach((docSnap) => {
       const item = docSnap.data();
       // Bỏ qua các khoản đang chờ xóa để không tính vào tổng tiền
