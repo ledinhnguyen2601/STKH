@@ -20,8 +20,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
 // MÃ CẤU HÌNH CỦA BẠN
+// MÃ CẤU HÌNH ĐÃ SỬA LỖI TYPO
 const firebaseConfig = {
-  apiKey: "AIzaSyBJkcfBwSAdLLjNO6o0EvL8m52vENyZ_mI",
+  apiKey: "AIzaSyBJkcfBwSAdLLjN06o0EvL8m52vENyZ_mI",
   authDomain: "portfolio-k12a1-nau.firebaseapp.com",
   projectId: "portfolio-k12a1-nau",
   storageBucket: "portfolio-k12a1-nau.firebasestorage.app",
