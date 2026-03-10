@@ -9,17 +9,33 @@
   <body>
     <div class="container">
       <div id="login-section" class="card">
-        <h2>Đăng nhập phòng trọ</h2>
-        <p>Nhập mật khẩu cơ bản để vào ghi chép</p>
+        <h2>Hệ thống Nội bộ</h2>
+        <p>Sử dụng tài khoản cá nhân để bảo mật</p>
+        <input
+          type="email"
+          id="email"
+          placeholder="Email (VD: nguyen@gmail.com)"
+        />
         <input
           type="password"
-          id="room-password"
-          placeholder="Mật khẩu (Gợi ý: 1234)"
+          id="password"
+          placeholder="Mật khẩu (Ít nhất 6 ký tự)"
         />
-        <button id="btnLogin">Vào sổ ghi chép</button>
-        <p id="login-error" style="color: red; display: none">
-          Sai mật khẩu, vui lòng thử lại!
-        </p>
+
+        <button id="btnLogin" style="background-color: #007bff">
+          Đăng nhập
+        </button>
+        <button
+          id="btnRegister"
+          style="background-color: #17a2b8; margin-top: 10px"
+        >
+          Đăng ký tài khoản mới
+        </button>
+
+        <p
+          id="login-error"
+          style="color: red; display: none; margin-top: 10px"
+        ></p>
       </div>
 
       <div id="app-section" class="card" style="display: none">
@@ -29,6 +45,10 @@
           <button id="btnLogout" class="btn-logout">Đăng xuất</button>
         </div>
 
+        <p style="text-align: center; color: #555">
+          Xin chào, <b id="currentUserDisplay"></b>!
+        </p>
+
         <div class="input-area">
           <input
             type="text"
@@ -36,12 +56,6 @@
             placeholder="Tên món đồ (VD: Rau, Thịt...)"
           />
           <input type="number" id="itemPrice" placeholder="Số tiền (VNĐ)" />
-          <select id="payerName">
-            <option value="">-- Chọn người mua --</option>
-            <option value="Nguyên">Nguyên</option>
-            <option value="Thành viên 2">Hưng</option>
-            <option value="Thành viên 3">Việt Anh</option>
-          </select>
           <button id="btnAddExpense" class="btn-add">Thêm khoản chi</button>
         </div>
 
@@ -50,6 +64,16 @@
           <ul id="expenseList"></ul>
           <div class="total-area">
             <strong>Tổng cộng: <span id="totalAmount">0</span> VNĐ</strong>
+            <button id="btnSettle" class="btn-settle">Chốt sổ tháng này</button>
+          </div>
+
+          <div
+            id="settlementResult"
+            class="settlement-box"
+            style="display: none"
+          >
+            <h3>📊 Kết quả chia tiền</h3>
+            <ul id="settlementList"></ul>
           </div>
         </div>
       </div>
