@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartShare - Quản lý chi tiêu</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="login-section" class="card">
+        <h2>Đăng nhập phòng trọ</h2>
+        <p>Nhập mật khẩu cơ bản để vào ghi chép</p>
+        <input
+          type="password"
+          id="room-password"
+          placeholder="Mật khẩu (Gợi ý: 1234)"
+        />
+        <button id="btnLogin">Vào sổ ghi chép</button>
+        <p id="login-error" style="color: red; display: none">
+          Sai mật khẩu, vui lòng thử lại!
+        </p>
+      </div>
+
+      <div id="app-section" class="card" style="display: none">
+        <h2>Sổ Đi Chợ - SmartShare</h2>
+        <div class="header-info">
+          <span class="offline-badge" id="network-status">Đang kết nối...</span>
+          <button id="btnLogout" class="btn-logout">Đăng xuất</button>
+        </div>
+
+        <div class="input-area">
+          <input
+            type="text"
+            id="itemName"
+            placeholder="Tên món đồ (VD: Rau, Thịt...)"
+          />
+          <input type="number" id="itemPrice" placeholder="Số tiền (VNĐ)" />
+          <select id="payerName">
+            <option value="">-- Chọn người mua --</option>
+            <option value="Nguyên">Nguyên</option>
+            <option value="Thành viên 2">Thành viên 2</option>
+            <option value="Thành viên 3">Thành viên 3</option>
+          </select>
+          <button id="btnAddExpense" class="btn-add">Thêm khoản chi</button>
+        </div>
+
+        <div class="list-area">
+          <h3>Danh sách đã mua tháng này</h3>
+          <ul id="expenseList"></ul>
+          <div class="total-area">
+            <strong>Tổng cộng: <span id="totalAmount">0</span> VNĐ</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
