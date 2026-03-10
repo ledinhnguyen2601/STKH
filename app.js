@@ -10,7 +10,6 @@ import {
   query,
   orderBy,
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-// THÊM THƯ VIỆN XÁC THỰC
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -19,16 +18,15 @@ import {
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-// MÃ CẤU HÌNH CỦA BẠN
-// MÃ CẤU HÌNH ĐÃ SỬA LỖI TYPO
+// MÃ CẤU HÌNH MỚI TINH TỪ APP QLDS
 const firebaseConfig = {
-  apiKey: "AIzaSyBJkcfBwSAdLLjN06o0EvL8m52vENyZ_mI",
+  apiKey: "AIzaSyCjHwQeiqR1qTAS9RBwfJKUXrQDSRJkNkY",
   authDomain: "portfolio-k12a1-nau.firebaseapp.com",
   projectId: "portfolio-k12a1-nau",
   storageBucket: "portfolio-k12a1-nau.firebasestorage.app",
   messagingSenderId: "537336340193",
-  appId: "1:537336340193:web:5b56c6757d4503e86aa1a0",
-  measurementId: "G-DJEXWJ223V",
+  appId: "1:537336340193:web:d25a8c6a90152bfc6aa1a0",
+  measurementId: "G-01MB4141EE",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -47,7 +45,7 @@ let activeUser = ""; // Lưu email người đang dùng
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // Đã đăng nhập
-    activeUser = user.email.split("@")[0]; // Lấy phần tên trước @ làm tên hiển thị
+    activeUser = user.email.split("@")[0];
     document.getElementById("currentUserDisplay").innerText = activeUser;
     document.getElementById("login-section").style.display = "none";
     document.getElementById("app-section").style.display = "block";
@@ -112,7 +110,7 @@ document.getElementById("btnAddExpense").addEventListener("click", async () => {
     await addDoc(expensesCollection, {
       name: name,
       price: parseInt(price),
-      payer: activeUser, // Tự động lấy tên tài khoản, không cần tự gõ
+      payer: activeUser,
       timestamp: new Date(),
       dateString: new Date().toLocaleDateString("vi-VN"),
     });
@@ -153,12 +151,12 @@ function loadDataRealtime() {
 
       const li = document.createElement("li");
       li.innerHTML = `
-                <div>
-                    <strong>${item.name}</strong> - ${item.price.toLocaleString("vi-VN")} VNĐ <br>
-                    <small>Người mua: ${item.payer} (${item.dateString})</small>
-                </div>
-                <button class="delete-btn" data-id="${docSnap.id}">Xóa</button>
-            `;
+        <div>
+            <strong>${item.name}</strong> - ${item.price.toLocaleString("vi-VN")} VNĐ <br>
+            <small>Người mua: ${item.payer} (${item.dateString})</small>
+        </div>
+        <button class="delete-btn" data-id="${docSnap.id}">Xóa</button>
+      `;
       listElement.appendChild(li);
     });
 
@@ -179,7 +177,6 @@ function loadDataRealtime() {
 
 // --- 6. THUẬT TOÁN CHỐT SỔ TỰ ĐỘNG ---
 document.getElementById("btnSettle").addEventListener("click", () => {
-  // Hỏi số lượng người trong phòng để chia cho chuẩn
   const numPeople = parseInt(
     prompt("Nhập tổng số người trong phòng trọ:", "3"),
   );
@@ -189,7 +186,6 @@ document.getElementById("btnSettle").addEventListener("click", () => {
   let totalSpent = 0;
   let paidByMember = {};
 
-  // Gom nhóm tiền theo từng tài khoản đã chi
   currentMonthExpenses.forEach((exp) => {
     totalSpent += exp.price;
     if (!paidByMember[exp.payer]) paidByMember[exp.payer] = 0;
@@ -203,7 +199,6 @@ document.getElementById("btnSettle").addEventListener("click", () => {
   const resultList = document.getElementById("settlementList");
   resultList.innerHTML = `<li style="color: blue;"><strong>💵 Trung bình mỗi người chịu:</strong> ${Math.round(average).toLocaleString("vi-VN")} VNĐ</li>`;
 
-  // Tính toán cho những người có đi chợ
   for (const member in paidByMember) {
     const balance = paidByMember[member] - average;
     let statusText = "";
